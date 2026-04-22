@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhishTrain — Learn to spot phishing</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <span class="logo"></span>
+      <span class="name">PhishTrain</span>
+      <span class="tag">Forward it. Learn it. Never click it.</span>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-view="analyze">Analyze</button>
+      <button class="tab" data-view="history">History</button>
+      <button class="tab" data-view="quiz">Quiz</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ANALYZE VIEW -->
+  <section id="view-analyze" class="view active">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Paste a suspicious email</h2>
+        <div class="sample-picker">
+          <label for="sample-select">Or try a sample:</label>
+          <select id="sample-select">
+            <option value="">— pick a sample —</option>
+          </select>
+        </div>
+      </div>
+      <textarea id="email-input" placeholder="Paste the full raw email including headers if you have them. At minimum, the subject and body."></textarea>
+      <div class="actions">
+        <button id="analyze-btn" class="primary">Analyze</button>
+        <button id="clear-btn" class="ghost">Clear</button>
+        <span id="analyze-status" class="status"></span>
+      </div>
+    </div>
+
+    <div id="result" class="result hidden">
+      <div class="verdict-row">
+        <div id="verdict-badge" class="badge"></div>
+        <div class="score-wrap">
+          <div class="score-label">Phishing score</div>
+          <div id="score-bar" class="score-bar"><span id="score-fill"></span></div>
+          <div id="score-value" class="score-value">—</div>
+        </div>
+      </div>
+      <p id="summary" class="summary"></p>
+
+      <div id="headers-block" class="headers-block"></div>
+
+      <h3>Red flags</h3>
+      <ul id="flags-list" class="flags-list"></ul>
+
+      <h3>What you can take away</h3>
+      <ul id="learning-list" class="learning-list"></ul>
+    </div>
+  </section>
+
+  <!-- HISTORY VIEW -->
+  <section id="view-history" class="view">
+    <div class="panel">
+      <h2>Analysis history</h2>
+      <div id="stats-row" class="stats-row"></div>
+      <ul id="history-list" class="history-list"></ul>
+      <p id="history-empty" class="empty">No analyses yet. Paste an email on the Analyze tab.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ VIEW -->
+  <section id="view-quiz" class="view">
+    <div class="panel">
+      <h2>Phishing quiz</h2>
+      <p class="muted">One question, generated from the emails you've analyzed (or a beginner question if you're new).</p>
+      <div class="actions">
+        <button id="quiz-new" class="primary">Generate a question</button>
+        <span id="quiz-status" class="status"></span>
+      </div>
+      <div id="quiz-card" class="quiz-card hidden">
+        <p id="quiz-question"></p>
+        <div id="quiz-options" class="quiz-options"></div>
+        <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Built by Praveen Rayapati · Claude Opus 4.7 · <a href="https://github.com/imsatya07">GitHub</a>
+  </div>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

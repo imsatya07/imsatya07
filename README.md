@@ -10,13 +10,27 @@ Built with Claude Opus 4.7, the Anthropic SDK tool-runner, and adaptive thinking
 
 ## Featured projects
 
-Three complementary prototypes spanning the agentic-security product lifecycle:
+Four complementary prototypes spanning the agentic-security product lifecycle:
 
 | Project | Pillar | Surface | The move |
 |---|---|---|---|
+| [phishtrain](./phishtrain) | Security awareness | Full-stack web app | Gamified phishing analyzer with live AI teardown + quiz |
 | [threat-radar](./threat-radar) | Threat intelligence | MCP server + CLI | Turn unstructured advisories into structured exposure assessments |
 | [exposure-radar](./exposure-radar) | Exposure management | FastAPI + HTML dashboard | Rank every (asset, CVE) pair by blended priority |
 | [my-app](./my-app) | Detection & response | CLI agent | Triage a workspace of logs/configs into an incident report |
+
+### [phishtrain](./phishtrain) — Gamified phishing analyzer + trainer
+
+A full-stack web app where users paste a suspicious email and Claude tears it apart — assigning a 0-100 phishing score, identifying red flags with direct quotes from the message, and generating personalized quiz questions from the user's past analyses.
+
+**What it shows**
+
+- **Full-stack, end-to-end.** FastAPI backend, vanilla-JS single-page frontend with tabbed analyze / history / quiz views, SQLite persistence, structured output via Pydantic schemas. No build step — ships as one `pip install -e .` and run.
+- **Consumer-grade AI UX.** Score bar, verdict badges, header mismatches highlighted, extracted-quote evidence for every red flag. The kind of polish a security-aware consumer would actually use.
+- **Gamified learning loop.** Claude generates a 4-option quiz question tailored to the user's own analysis history — turning a one-off tool into a personal training program.
+- **Defense-in-depth against injection.** Deterministic email parsing (headers, links, reply-to mismatch detection) happens server-side before the LLM sees the content, so the agent gets pre-extracted context instead of trusting the email verbatim.
+
+**Stack:** Python · FastAPI · SQLite · Vanilla JS + CSS · Anthropic SDK `messages.parse` with structured outputs · prompt caching
 
 ### [threat-radar](./threat-radar) — Agentic threat-intelligence correlator (MCP server)
 
@@ -61,6 +75,12 @@ A command-line tool that drops a Claude agent into a workspace of logs and confi
 Both projects need `ANTHROPIC_API_KEY` set for the agent endpoints. The deterministic paths (`/correlate`, the detector unit tests) run without one.
 
 ```bash
+# phishtrain — full-stack phishing analyzer + trainer (http://127.0.0.1:8000)
+cd phishtrain
+pip install -e ".[dev]"
+pytest                      # 11 tests, no API key needed
+phishtrain --reload
+
 # threat-radar — MCP server + CLI for advisory ingestion
 cd threat-radar
 pip install -e ".[dev]"

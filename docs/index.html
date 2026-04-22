@@ -177,21 +177,26 @@
   <div class="wrap">
     <h2>About</h2>
     <p>
-      Three production-minded prototypes that span the agentic-security product lifecycle — from <span class="highlight">threat intelligence</span> to <span class="highlight">exposure management</span> to <span class="highlight">detection &amp; response</span>. Each one demonstrates the same design philosophy: deterministic primitives handle the math and I/O, the LLM owns the judgment work.
+      Four production-minded prototypes that span the agentic-security product lifecycle — from <span class="highlight">security awareness</span> to <span class="highlight">threat intelligence</span> to <span class="highlight">exposure management</span> to <span class="highlight">detection &amp; response</span>. Each one demonstrates the same design philosophy: deterministic primitives handle the math and I/O, the LLM owns the judgment work.
     </p>
     <div class="pillars">
       <div class="pillar-card">
         <span class="num">01</span>
+        <strong>Security awareness</strong>
+        <span>Gamified phishing analysis that trains users on real emails.</span>
+      </div>
+      <div class="pillar-card">
+        <span class="num">02</span>
         <strong>Threat intelligence</strong>
         <span>Turn unstructured advisories into structured exposure assessments.</span>
       </div>
       <div class="pillar-card">
-        <span class="num">02</span>
+        <span class="num">03</span>
         <strong>Exposure management</strong>
         <span>Rank every (asset, CVE) pair by blended priority.</span>
       </div>
       <div class="pillar-card">
-        <span class="num">03</span>
+        <span class="num">04</span>
         <strong>Detection &amp; response</strong>
         <span>Triage logs and configs into an incident report.</span>
       </div>
@@ -202,6 +207,42 @@
 <section id="projects">
   <div class="wrap">
     <h2>Featured projects</h2>
+
+    <!-- phishtrain -->
+    <article class="project">
+      <div class="project-head">
+        <h3>phishtrain</h3>
+        <span class="pillar">Security awareness<span class="dot">·</span>Full-stack web app</span>
+      </div>
+      <p class="lede">
+        Paste a suspicious email — Claude tears it apart. Assigns a 0–100 phishing score, flags red flags with direct quotes from the message, and generates quiz questions tailored to your own analysis history. A full-stack consumer-facing app that makes phishing literacy a habit, not a corporate training slog.
+      </p>
+      <ul class="what-it-shows">
+        <li><b>End-to-end full stack.</b> FastAPI backend, vanilla-JS tabbed SPA (Analyze / History / Quiz), SQLite persistence, static file serving — zero build step. One <code>pip install</code> and it runs.</li>
+        <li><b>Consumer-grade AI UX.</b> Animated score bar, verdict badges (phishing / suspicious / legitimate), reply-to mismatches auto-highlighted, extracted-quote evidence per red flag, gamified quiz that reinforces lessons from your actual inbox.</li>
+        <li><b>Defense-in-depth against prompt injection.</b> A deterministic email parser extracts headers / links / reply-to mismatches server-side before the LLM sees anything — the model gets pre-extracted context, not the email verbatim.</li>
+        <li><b>Structured outputs over chat.</b> <code>messages.parse()</code> with Pydantic schemas (<code>PhishingAnalysis</code>, <code>QuizQuestion</code>). Every response is validated before it reaches the UI.</li>
+      </ul>
+      <pre class="sample"><span class="muted">POST /api/analyze</span>
+verdict: <span class="sev-crit">PHISHING</span>   score: 92 / 100
+summary: Brand-impersonation + urgency pressure + lookalike domain — classic Amazon phish.
+
+headers:
+  From:     "Amazon Support" &lt;billing-verify@<span class="sev-crit">amaz0n-security.support</span>&gt;
+  Reply-To: amazon.billing@secureinbox-verify.com  <span class="sev-crit">← domain mismatch</span>
+
+red flags:
+  <span class="sev-crit">•</span> sender_spoofing    "amaz0n-security.support" — lookalike of amazon.com
+  <span class="sev-crit">•</span> urgency_pressure   "action required within 24 hours"
+  <span class="sev-crit">•</span> suspicious_link    "amaz0n-billing-verify.info" (not amazon.com)
+  <span class="sev-crit">•</span> payment_redirect   "gift card redemption" — gift cards for refunds are never legitimate</pre>
+      <div class="stack">Python · FastAPI · SQLite · Vanilla JS · Pydantic · Anthropic SDK messages.parse · prompt caching</div>
+      <div class="project-links">
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/phishtrain" target="_blank" rel="noopener">View on GitHub →</a>
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/phishtrain/src/phishtrain" target="_blank" rel="noopener">Source</a>
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/phishtrain/tests" target="_blank" rel="noopener">Tests</a>
+      </div>
+    </article>
 
     <!-- threat-radar -->
     <article class="project">
