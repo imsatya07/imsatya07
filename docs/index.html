@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praveen Rayapati — Agentic AI for IT/OT Cybersecurity</title>
+<meta name="description" content="Portfolio of Praveen Rayapati — agentic AI prototypes for IT/OT cybersecurity, built with Claude Opus 4.7 and the Anthropic SDK.">
+<style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #121820;
+    --panel-2: #1a222d;
+    --border: #263241;
+    --text: #e6edf3;
+    --muted: #8b98a5;
+    --accent: #6be0a6;
+    --accent-dim: #3a8b66;
+    --danger: #f07178;
+    --warn: #f9c74f;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ---------- hero ---------- */
+  header.hero {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(ellipse at top left, rgba(107, 224, 166, 0.08), transparent 60%),
+      radial-gradient(ellipse at top right, rgba(240, 113, 120, 0.05), transparent 60%);
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+  }
+  h1 { font-size: 2.6rem; margin: 0 0 0.25rem; letter-spacing: -0.02em; line-height: 1.1; }
+  .tagline { font-size: 1.15rem; color: var(--muted); max-width: 640px; margin: 0.5rem 0 1.5rem; }
+  nav.links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  nav.links a {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 0.9rem; border: 1px solid var(--border); border-radius: 6px;
+    color: var(--text); text-decoration: none;
+    background: var(--panel); font-size: 0.9rem;
+    transition: border-color .15s, color .15s, background .15s;
+  }
+  nav.links a:hover { border-color: var(--accent); color: var(--accent); }
+  nav.links a.primary { background: var(--accent); color: #05110a; border-color: var(--accent); font-weight: 600; }
+  nav.links a.primary:hover { background: #7beeb6; }
+
+  /* ---------- sections ---------- */
+  section { padding: 3.5rem 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: 0; }
+  h2 {
+    font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--muted); margin: 0 0 1.5rem; font-weight: 600;
+  }
+  h3 {
+    font-family: var(--mono); font-size: 1.35rem; margin: 0 0 0.25rem; color: var(--text);
+  }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .about p { font-size: 1.05rem; max-width: 720px; color: #c8d1da; }
+  .about .highlight { color: var(--accent); }
+
+  /* ---------- projects ---------- */
+  .project {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.75rem; margin-bottom: 1.5rem;
+    transition: border-color .15s, transform .15s;
+  }
+  .project:hover { border-color: var(--accent-dim); transform: translateY(-1px); }
+  .project-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;
+  }
+  .pillar {
+    font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .pillar .dot { color: var(--accent); margin: 0 0.4rem; }
+  .lede { color: #c8d1da; margin: 0.6rem 0 1rem; }
+  .what-it-shows { margin: 1rem 0; padding-left: 0; list-style: none; }
+  .what-it-shows li {
+    padding: 0.5rem 0 0.5rem 1.4rem; position: relative;
+    border-top: 1px solid var(--border); font-size: 0.93rem; color: #d8e0e8;
+  }
+  .what-it-shows li:first-child { border-top: 0; }
+  .what-it-shows li::before {
+    content: ""; position: absolute; left: 0; top: 1rem;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  }
+  .what-it-shows b { color: var(--text); }
+  .stack {
+    font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+    padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 1rem;
+  }
+  .project-links { margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .project-links a {
+    font-size: 0.88rem; padding: 0.4rem 0.8rem; border: 1px solid var(--border);
+    border-radius: 5px; color: var(--text); background: var(--panel-2);
+  }
+  .project-links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  /* ---------- sample output ---------- */
+  .sample {
+    background: #05090d; border: 1px solid var(--border); border-radius: 6px;
+    padding: 0.9rem 1rem; font-family: var(--mono); font-size: 0.78rem;
+    color: #c8d1da; margin: 1rem 0 0; overflow-x: auto; line-height: 1.5;
+  }
+  .sample .sev-crit { color: var(--danger); font-weight: 600; }
+  .sample .sev-high { color: var(--warn); }
+  .sample .ok { color: var(--accent); }
+  .sample .muted { color: var(--muted); }
+
+  /* ---------- pillars grid ---------- */
+  .pillars {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.9rem; margin: 1rem 0 0;
+  }
+  .pillar-card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1rem 1.1rem;
+  }
+  .pillar-card .num {
+    font-family: var(--mono); font-size: 0.75rem; color: var(--accent);
+    display: block; margin-bottom: 0.3rem;
+  }
+  .pillar-card strong { font-size: 0.95rem; display: block; margin-bottom: 0.2rem; }
+  .pillar-card span { font-size: 0.85rem; color: var(--muted); }
+
+  /* ---------- footer ---------- */
+  footer { padding: 2.5rem 0; color: var(--muted); font-size: 0.85rem; text-align: center; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    header.hero { padding: 3rem 0 2rem; }
+    section { padding: 2.5rem 0; }
+    .project { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Agentic AI · IT/OT Cybersecurity</p>
+    <h1>Praveen Rayapati</h1>
+    <p class="tagline">
+      Building autonomous systems that triage incidents, correlate exposures, and reason across hybrid IT/OT environments — powered by Claude Opus 4.7 and the Anthropic SDK.
+    </p>
+    <nav class="links">
+      <a class="primary" href="https://github.com/imsatya07" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/praveen-rayapati-293384313/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#projects">Projects ↓</a>
+    </nav>
+  </div>
+</header>
+
+<section class="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>
+      Three production-minded prototypes that span the agentic-security product lifecycle — from <span class="highlight">threat intelligence</span> to <span class="highlight">exposure management</span> to <span class="highlight">detection &amp; response</span>. Each one demonstrates the same design philosophy: deterministic primitives handle the math and I/O, the LLM owns the judgment work.
+    </p>
+    <div class="pillars">
+      <div class="pillar-card">
+        <span class="num">01</span>
+        <strong>Threat intelligence</strong>
+        <span>Turn unstructured advisories into structured exposure assessments.</span>
+      </div>
+      <div class="pillar-card">
+        <span class="num">02</span>
+        <strong>Exposure management</strong>
+        <span>Rank every (asset, CVE) pair by blended priority.</span>
+      </div>
+      <div class="pillar-card">
+        <span class="num">03</span>
+        <strong>Detection &amp; response</strong>
+        <span>Triage logs and configs into an incident report.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Featured projects</h2>
+
+    <!-- threat-radar -->
+    <article class="project">
+      <div class="project-head">
+        <h3>threat-radar</h3>
+        <span class="pillar">Threat intelligence<span class="dot">·</span>MCP server + CLI</span>
+      </div>
+      <p class="lede">
+        An <strong>MCP server</strong> that any agentic client (Claude Desktop, Cursor, or your own agent) can plug into. Claude reads unstructured threat advisories — CISA alerts, vendor blogs, CERT notices — extracts structured intel (CVEs, IOCs, affected products) via <code>messages.parse()</code>, and correlates it against an IT/OT asset inventory.
+      </p>
+      <ul class="what-it-shows">
+        <li><b>MCP-native integration.</b> Built on <code>FastMCP</code> with stdio transport, exposing <code>list_inventory</code>, <code>ingest_advisory</code>, and <code>assess_exposure</code> as first-class MCP tools. Any modern agent host can consume it.</li>
+        <li><b>Structured outputs over free-form prose.</b> Uses <code>client.messages.parse()</code> with Pydantic schemas instead of parsing markdown. The LLM is a validated extractor, not a chatty assistant.</li>
+        <li><b>Clean separation of concerns.</b> LLM does unstructured-to-structured translation; a pure-function correlator handles asset-matching and crown-jewel / OT-aware recommendations. 5 deterministic unit tests, no LLM mocking.</li>
+      </ul>
+      <pre class="sample"><span class="muted">=== cisa-aa24-log4shell-refresh.md ===</span>
+Title:    Continued Exploitation of Apache Log4j Vulnerabilities
+Category: rce   Severity: <span class="sev-crit">critical</span>
+CVEs:     CVE-2021-44228, CVE-2021-45046, CVE-2021-45105
+Products: log4j
+
+Exposure — 2 asset(s) exposed. Prioritize crown-jewel assets first: -
+OT assets impacted (ot-historian-02) — apply compensating controls
+(segmentation, IDS signatures) before patching window.
+  [high       ] ot-historian-02 (ot) <span class="muted">— runs log4j; OT environment — coordinate patch with ops</span>
+  [medium     ] build-server-02 (it) <span class="muted">— runs log4j</span></pre>
+      <div class="stack">Python · FastMCP · Pydantic · Anthropic SDK messages.parse · prompt caching</div>
+      <div class="project-links">
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/threat-radar" target="_blank" rel="noopener">View on GitHub →</a>
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/threat-radar/src/threat_radar" target="_blank" rel="noopener">Source</a>
+        <a href="https://github.com/imsatya07/imsatya07/blob/main/threat-radar/tests/test_correlator.py" target="_blank" rel="noopener">Tests</a>
+      </div>
+    </article>
+
+    <!-- exposure-radar -->
+    <article class="project">
+      <div class="project-head">
+        <h3>exposure-radar</h3>
+        <span class="pillar">Exposure management<span class="dot">·</span>FastAPI + HTML dashboard</span>
+      </div>
+      <p class="lede">
+        A FastAPI service where a Claude agent investigates a mock enterprise inventory, correlates installed software against a CVE feed, and returns a prioritized exposure report a SOC manager can act on this morning.
+      </p>
+      <ul class="what-it-shows">
+        <li><b>Hybrid agent architecture.</b> A pure-function scorer blends <code>CVSS × asset criticality × internet-exposure × CISA KEV</code> multipliers deterministically; the LLM owns the triage narrative and OT-aware recommendations.</li>
+        <li><b>IT/OT depth.</b> Crown-jewel SCADA HMIs, Modbus PLC stacks, OT-specific patching constraints. Sample inventory surfaces Log4Shell on a Windows historian and EternalBlue on a Windows 7 SCADA HMI.</li>
+        <li><b>Full product surface.</b> Structured REST endpoints (<code>POST /scan</code>, <code>GET /correlate</code>, <code>/assets</code>, <code>/cves</code>), a zero-dependency HTML dashboard for demos, a <code>uvicorn</code> CLI entry point, and 7 unit tests on the scoring logic.</li>
+      </ul>
+      <pre class="sample"><span class="muted">GET /correlate  →  200 OK</span>
+summary: 15 exposures: 6 critical, 9 high
+
+top findings:
+  100.0  <span class="sev-high">high    </span>  edge-gw-01      CVE-2023-44487 (HTTP/2 Rapid Reset — internet-exposed KEV)
+  100.0  <span class="sev-crit">critical</span>  web-prod-03     CVE-2021-41773 (Apache path-traversal RCE — KEV)
+  100.0  <span class="sev-high">high    </span>  scada-hmi-12    CVE-2017-0144 (EternalBlue on OT crown-jewel)
+   97.5  <span class="sev-crit">critical</span>  ot-historian-02 CVE-2021-44228 (Log4Shell on OT historian)</pre>
+      <div class="stack">Python · FastAPI · Pydantic · Anthropic SDK tool_runner · @beta_tool · adaptive thinking</div>
+      <div class="project-links">
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/exposure-radar" target="_blank" rel="noopener">View on GitHub →</a>
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/exposure-radar/src/exposure_radar" target="_blank" rel="noopener">Source</a>
+        <a href="https://github.com/imsatya07/imsatya07/blob/main/exposure-radar/tests/test_correlator.py" target="_blank" rel="noopener">Tests</a>
+      </div>
+    </article>
+
+    <!-- my-app -->
+    <article class="project">
+      <div class="project-head">
+        <h3>my-app</h3>
+        <span class="pillar">Detection &amp; response<span class="dot">·</span>CLI agent</span>
+      </div>
+      <p class="lede">
+        A command-line tool that drops a Claude agent into a workspace of logs and configs, discovers artifacts, runs heuristic scanners, correlates findings across files, and produces a markdown incident report.
+      </p>
+      <ul class="what-it-shows">
+        <li><b>Full agent loop.</b> The agent picks its own tools — lists the workspace, reads raw files, runs SSH brute-force and permissive-firewall detectors, then decides when it has enough evidence to stop and write the report.</li>
+        <li><b>Security engineering rigor.</b> Pure-function detectors live in their own module with deterministic unit tests. Every file access is sandboxed to a workspace root to block path traversal.</li>
+        <li><b>Modern Anthropic SDK patterns.</b> <code>@beta_tool</code> decorated tool functions, a prompt-cached system prompt, adaptive thinking on Opus 4.7.</li>
+      </ul>
+      <pre class="sample"><span class="muted">$ my-app sample_data/</span>
+
+<b>Summary.</b> A brute-force campaign against the edge SSH gateway correlates
+with an overly-permissive inbound firewall rule, elevating risk substantially.
+
+<b>Findings</b>
+  • <span class="sev-high">[high]</span>     <span class="ok">ssh-bruteforce</span>            11 failed SSH logins from 203.0.113.44
+  • <span class="sev-crit">[critical]</span> <span class="ok">firewall-any-any</span>          allow any from 0.0.0.0/0 to 10.0.4.200 port any
+  • <span class="sev-high">[high]</span>     <span class="ok">firewall-sensitive-port</span>   port 22 exposed to 0.0.0.0/0 on edge-gw
+
+<b>Recommended actions</b>
+  1. Block 203.0.113.44 at the perimeter; audit for exploitation indicators.
+  2. Scope down the any/any rule on 10.0.4.200 — likely stale.
+  3. Restrict SSH on edge-gw to the bastion IP range only.</pre>
+      <div class="stack">Python · Anthropic SDK tool_runner · argparse · pytest</div>
+      <div class="project-links">
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/my-app" target="_blank" rel="noopener">View on GitHub →</a>
+        <a href="https://github.com/imsatya07/imsatya07/tree/main/my-app/src/my_app" target="_blank" rel="noopener">Source</a>
+        <a href="https://github.com/imsatya07/imsatya07/blob/main/my-app/tests/test_detectors.py" target="_blank" rel="noopener">Tests</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>
+      Open to <strong>agentic AI / cybersecurity engineering</strong> roles, especially at companies building autonomous defense for IT and OT environments.
+    </p>
+    <nav class="links">
+      <a class="primary" href="https://www.linkedin.com/in/praveen-rayapati-293384313/" target="_blank" rel="noopener">LinkedIn →</a>
+      <a href="https://github.com/imsatya07" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Praveen Rayapati · Built with plain HTML &amp; CSS · <a href="https://github.com/imsatya07/imsatya07/blob/main/docs/index.html">Source</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
