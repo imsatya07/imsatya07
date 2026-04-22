@@ -1,5 +1,7 @@
 # imsatya07
 
+**Praveen Rayapati** · [LinkedIn](https://www.linkedin.com/in/praveen-rayapati-293384313/)
+
 Agentic AI prototypes for IT/OT cybersecurity — autonomous systems that triage incidents, correlate exposures, and reason across hybrid enterprise environments.
 
 Built with Claude Opus 4.7, the Anthropic SDK tool-runner, and adaptive thinking. Both projects demonstrate end-to-end agent design: deterministic primitives handle the math and the I/O, the LLM does the judgment work.
