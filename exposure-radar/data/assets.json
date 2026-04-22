@@ -1,0 +1,109 @@
+[
+  {
+    "id": "asset-001",
+    "hostname": "edge-gw-01",
+    "environment": "it",
+    "criticality": "high",
+    "internet_exposed": true,
+    "software": [
+      {"name": "openssh", "version": "8.2p1"},
+      {"name": "nginx", "version": "1.18.0"}
+    ]
+  },
+  {
+    "id": "asset-002",
+    "hostname": "web-prod-03",
+    "environment": "it",
+    "criticality": "high",
+    "internet_exposed": true,
+    "software": [
+      {"name": "apache", "version": "2.4.49"},
+      {"name": "openssl", "version": "1.1.1k"}
+    ]
+  },
+  {
+    "id": "asset-003",
+    "hostname": "billing-db-01",
+    "environment": "it",
+    "criticality": "crown_jewel",
+    "internet_exposed": false,
+    "software": [
+      {"name": "postgresql", "version": "13.4"},
+      {"name": "openssh", "version": "8.2p1"}
+    ]
+  },
+  {
+    "id": "asset-004",
+    "hostname": "scada-hmi-12",
+    "environment": "ot",
+    "criticality": "crown_jewel",
+    "internet_exposed": false,
+    "software": [
+      {"name": "windows", "version": "7-sp1"},
+      {"name": "openssl", "version": "1.0.2u"}
+    ]
+  },
+  {
+    "id": "asset-005",
+    "hostname": "plc-rtu-07",
+    "environment": "ot",
+    "criticality": "high",
+    "internet_exposed": false,
+    "software": [
+      {"name": "modbus-stack", "version": "2.1.0"}
+    ]
+  },
+  {
+    "id": "asset-006",
+    "hostname": "ot-historian-02",
+    "environment": "ot",
+    "criticality": "high",
+    "internet_exposed": false,
+    "software": [
+      {"name": "windows", "version": "10-21h2"},
+      {"name": "log4j", "version": "2.14.1"}
+    ]
+  },
+  {
+    "id": "asset-007",
+    "hostname": "dev-laptop-jane",
+    "environment": "it",
+    "criticality": "low",
+    "internet_exposed": true,
+    "software": [
+      {"name": "openssh", "version": "9.3p1"},
+      {"name": "log4j", "version": "2.17.2"}
+    ]
+  },
+  {
+    "id": "asset-008",
+    "hostname": "vpn-concentrator-01",
+    "environment": "it",
+    "criticality": "high",
+    "internet_exposed": true,
+    "software": [
+      {"name": "openssl", "version": "1.0.2u"}
+    ]
+  },
+  {
+    "id": "asset-009",
+    "hostname": "build-server-02",
+    "environment": "it",
+    "criticality": "medium",
+    "internet_exposed": false,
+    "software": [
+      {"name": "log4j", "version": "2.14.1"},
+      {"name": "openssh", "version": "8.2p1"}
+    ]
+  },
+  {
+    "id": "asset-010",
+    "hostname": "ot-firewall-01",
+    "environment": "ot",
+    "criticality": "crown_jewel",
+    "internet_exposed": false,
+    "software": [
+      {"name": "openssl", "version": "1.1.1k"}
+    ]
+  }
+]

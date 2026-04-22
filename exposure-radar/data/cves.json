@@ -1,0 +1,74 @@
+[
+  {
+    "id": "CVE-2021-44228",
+    "description": "Log4j RCE via JNDI lookup (Log4Shell) — wormable, mass-exploited.",
+    "cvss": 10.0,
+    "affected_software": "log4j",
+    "affected_versions": ["2.0", "2.14.1", "2.15.0"],
+    "known_exploited": true
+  },
+  {
+    "id": "CVE-2021-41773",
+    "description": "Apache HTTP Server path traversal and RCE.",
+    "cvss": 9.8,
+    "affected_software": "apache",
+    "affected_versions": ["2.4.49"],
+    "known_exploited": true
+  },
+  {
+    "id": "CVE-2014-0160",
+    "description": "OpenSSL Heartbleed — memory disclosure.",
+    "cvss": 7.5,
+    "affected_software": "openssl",
+    "affected_versions": ["1.0.1", "1.0.1f"],
+    "known_exploited": true
+  },
+  {
+    "id": "CVE-2022-0778",
+    "description": "OpenSSL infinite loop in BN_mod_sqrt() leading to DoS.",
+    "cvss": 7.5,
+    "affected_software": "openssl",
+    "affected_versions": ["1.0.2u", "1.1.1k"],
+    "known_exploited": false
+  },
+  {
+    "id": "CVE-2017-0144",
+    "description": "Windows SMBv1 RCE (EternalBlue) — wormable, used by WannaCry/NotPetya.",
+    "cvss": 8.1,
+    "affected_software": "windows",
+    "affected_versions": ["7-sp1"],
+    "known_exploited": true
+  },
+  {
+    "id": "CVE-2020-15778",
+    "description": "OpenSSH scp command injection.",
+    "cvss": 7.8,
+    "affected_software": "openssh",
+    "affected_versions": ["8.2p1"],
+    "known_exploited": false
+  },
+  {
+    "id": "CVE-2023-44487",
+    "description": "HTTP/2 Rapid Reset DoS.",
+    "cvss": 7.5,
+    "affected_software": "nginx",
+    "affected_versions": ["1.18.0"],
+    "known_exploited": true
+  },
+  {
+    "id": "CVE-2018-1160",
+    "description": "Modbus stack out-of-bounds read leading to control disruption.",
+    "cvss": 9.8,
+    "affected_software": "modbus-stack",
+    "affected_versions": ["2.1.0"],
+    "known_exploited": false
+  },
+  {
+    "id": "CVE-2021-3711",
+    "description": "OpenSSL SM2 decryption buffer overflow.",
+    "cvss": 9.8,
+    "affected_software": "openssl",
+    "affected_versions": ["1.1.1k"],
+    "known_exploited": false
+  }
+]
