@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "threat-radar"
+version = "0.1.0"
+description = "Agentic threat-intelligence correlator (MCP server + CLI)"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.40.0",
+    "mcp>=1.0",
+    "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[project.scripts]
+threat-radar = "threat_radar.cli:main"
+threat-radar-mcp = "threat_radar.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/threat_radar"]

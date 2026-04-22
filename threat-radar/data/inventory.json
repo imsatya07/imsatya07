@@ -1,0 +1,44 @@
+[
+  {
+    "id": "asset-001",
+    "hostname": "edge-gw-01",
+    "environment": "it",
+    "criticality": "high",
+    "software": ["openssh", "nginx"]
+  },
+  {
+    "id": "asset-002",
+    "hostname": "web-prod-03",
+    "environment": "it",
+    "criticality": "high",
+    "software": ["apache", "openssl"]
+  },
+  {
+    "id": "asset-003",
+    "hostname": "billing-db-01",
+    "environment": "it",
+    "criticality": "crown_jewel",
+    "software": ["postgresql", "openssh"]
+  },
+  {
+    "id": "asset-004",
+    "hostname": "scada-hmi-12",
+    "environment": "ot",
+    "criticality": "crown_jewel",
+    "software": ["windows", "openssl"]
+  },
+  {
+    "id": "asset-005",
+    "hostname": "ot-historian-02",
+    "environment": "ot",
+    "criticality": "high",
+    "software": ["windows", "log4j"]
+  },
+  {
+    "id": "asset-006",
+    "hostname": "build-server-02",
+    "environment": "it",
+    "criticality": "medium",
+    "software": ["log4j", "openssh"]
+  }
+]

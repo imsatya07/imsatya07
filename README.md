@@ -8,6 +8,26 @@ Built with Claude Opus 4.7, the Anthropic SDK tool-runner, and adaptive thinking
 
 ## Featured projects
 
+Three complementary prototypes spanning the agentic-security product lifecycle:
+
+| Project | Pillar | Surface | The move |
+|---|---|---|---|
+| [threat-radar](./threat-radar) | Threat intelligence | MCP server + CLI | Turn unstructured advisories into structured exposure assessments |
+| [exposure-radar](./exposure-radar) | Exposure management | FastAPI + HTML dashboard | Rank every (asset, CVE) pair by blended priority |
+| [my-app](./my-app) | Detection & response | CLI agent | Triage a workspace of logs/configs into an incident report |
+
+### [threat-radar](./threat-radar) — Agentic threat-intelligence correlator (MCP server)
+
+An **MCP server** that any agentic client (Claude Desktop, Cursor, or your own agent) can plug into. Claude reads unstructured threat advisories — CISA alerts, vendor blogs, CERT notices — extracts structured intel (CVEs, IOCs, affected products) via `messages.parse()`, and correlates it against an IT/OT asset inventory.
+
+**What it shows**
+
+- **MCP-native integration.** Built on `FastMCP` with stdio transport, exposing `list_inventory`, `ingest_advisory`, and `assess_exposure` as first-class MCP tools. Any modern agent host can consume it — exactly the integration surface agentic security platforms ship with.
+- **Structured outputs over free-form prose.** Uses `client.messages.parse()` with Pydantic schemas (`ExtractedIntel`, `ExposureAssessment`) instead of parsing markdown. The LLM is a validated extractor, not a chatty assistant — production-ready design.
+- **Clean separation of concerns.** The LLM does the unstructured-to-structured translation; a pure-function correlator handles the asset-matching and crown-jewel/OT-aware recommendations. 5 unit tests cover the correlator deterministically, no LLM mocking required.
+
+**Stack:** Python · `FastMCP` · Pydantic · Anthropic SDK `messages.parse` with structured outputs · prompt caching
+
 ### [exposure-radar](./exposure-radar) — Agentic CVE-to-asset exposure correlator
 
 A FastAPI service where a Claude agent investigates a mock enterprise inventory, correlates installed software against a CVE feed, and returns a prioritized exposure report ready for a SOC manager to act on this morning.
@@ -39,15 +59,22 @@ A command-line tool that drops a Claude agent into a workspace of logs and confi
 Both projects need `ANTHROPIC_API_KEY` set for the agent endpoints. The deterministic paths (`/correlate`, the detector unit tests) run without one.
 
 ```bash
+# threat-radar — MCP server + CLI for advisory ingestion
+cd threat-radar
+pip install -e ".[dev]"
+pytest                      # 5 tests, no API key needed
+threat-radar                # process every file in data/advisories/
+threat-radar-mcp            # launch as MCP server (stdio) for Claude Desktop etc.
+
 # exposure-radar — web service + dashboard at http://127.0.0.1:8000
 cd exposure-radar
 pip install -e ".[dev]"
-pytest          # 7 tests, no API key needed
+pytest                      # 7 tests, no API key needed
 exposure-radar --reload
 
 # my-app — CLI triage over a workspace of logs/configs
 cd my-app
 pip install -e ".[dev]"
-pytest          # 6 tests, no API key needed
+pytest                      # 6 tests, no API key needed
 my-app sample_data
 ```
